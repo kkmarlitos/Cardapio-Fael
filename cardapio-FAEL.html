@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cardapio</title>
+  <style>
+    * {
+      margin: 0px;
+    }
+    header {
+      background-color: black;
+      padding: 4vw;
+      text-align: center;
+    }
+    header > div {
+      width: 70vw;
+      margin: auto;
+      padding: 2vw;
+      border-right: 12px solid gray;
+      border-left: 12px solid gray;
+    }
+    h1 {
+      color: white;
+      font-size: 6vw;
+    }
+    h2 {
+      color: yellow;
+      font-size: 4vw;
+    }
+
+    main {
+      background-color: black;
+      padding: 4vw;
+    }
+    ol {
+      padding-left: 1vw;
+    }
+    .titulo_categoria {
+      color: yellow;
+      font-size: 5vw;
+    }
+    .container_listas {
+      display: flex;
+      align-items: center;
+      border: 1px solid white;
+      background-color: black;
+      transition: background-color 0.3s;
+    }
+    .container_listas.selected {
+      background-color: rgba(255, 255, 0, 0.3);
+    }
+    .nome_pedido {
+      color: yellow;
+      font-size: 4vw;
+      padding-top: 2vw;
+      padding-bottom: 1vw;
+    }
+    .descrição_pedidos {
+      width: 65vw;
+      color: rgba(255, 255, 255, 0.767);
+      font-size: 4vw;
+      padding-bottom: 2vw;
+    }
+    .nome_desc {
+      padding-left: 5vw;
+    }
+    .div_checkbox {
+      padding-left: 6vw;
+    }
+    .check {
+      width: 3vw;
+      height: 3vh;
+    }
+
+    #section_finalizar {
+      padding-top: 2vw;
+      padding-bottom: 2vw;
+      text-align: end;
+    }
+    #section_finalizar > input {
+      width: 20vw;
+      height: 5vh;
+      font-size: 2vw;
+      font-weight: bold;
+    }
+    #finalização {
+      display: none;
+      background-color: white;
+      padding: 4vw;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      border: 2px solid black;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      width: 80vw;
+      max-width: 90vw;
+    }
+    #finalização > input {
+      width: 20vw;
+      height: 6vh;
+      font-size: 4vw;
+    }
+    #finalização h3 {
+      font-size: 6vw;
+    }
+    .itens {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 4vw;
+      margin-bottom: 2vw;
+    }
+    .quantidade {
+      display: flex;
+      align-items: center;
+    }
+    .quantidade button {
+      width: 5vw;
+      height: 5vh;
+      font-size: 4vw;
+    }
+    .quantidade span {
+      font-size: 4vw;
+      margin: 0 2vw;
+    }
+    .remover {
+      font-size: 4vw;
+      color: red;
+      cursor: pointer;
+    }
+
+    .metodo_pagamento {
+      margin-top: 3vw;
+      font-size: 4vw;
+    }
+    .opcao_pagamento {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2vw;
+    }
+    .opcao_pagamento label {
+      font-size: 4vw;
+      margin-left: 1vw;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>BIRIS'S LANCHES</h1>
+      <h2>Bons lanhces!</h2> 
+    </div>   
+  </header>
+
+  <main>
+    <section class="categorias">
+      <p class="titulo_categoria">XIS BURGERS</p>
+      <ol>
+        <div class="container_listas">
+          <div class="nome_desc">
+            <li class="nome_pedido">X-Tudo</li>
+            <p class="descrição_pedidos">Pão brioche selado, hambúrguer com blend de carnes e queijo.</p>
+          </div>
+          <div class="div_checkbox">
+            <input type="checkbox" name="x-tudo" id="x-tudo" class="check" value="X-Tudo">
+          </div>
+        </div>
+
+        <div class="container_listas">
+          <div class="nome_desc">
+            <li class="nome_pedido">X-Salada</li>
+            <p class="descrição_pedidos">Pão brioche, hambúrguer, queijo e alface.</p>
+          </div>
+          <div class="div_checkbox">
+            <input type="checkbox" name="x-salada" id="x-salada" class="check" value="X-Salada">
+          </div>
+        </div>
+      </ol>
+    </section>
+
+    <section class="categorias">
+      <p class="titulo_categoria">CACHORROS QUENTES</p>
+      <ol>
+        <div class="container_listas">
+          <div class="nome_desc">
+            <li class="nome_pedido">Cachorrão</li>
+            <p class="descrição_pedidos">Pão, batata-palha, vinagrete.</p>
+          </div>
+          <div class="div_checkbox">
+            <input type="checkbox" name="cachorrão" id="cachorrão" class="check" value="Cachorrão">
+          </div>
+        </div>
+
+        <div class="container_listas">
+          <div class="nome_desc">
+            <li class="nome_pedido">Cachorrinho</li>
+            <p class="descrição_pedidos">Pão, batata-palha.</p>
+          </div>
+          <div class="div_checkbox">
+            <input type="checkbox" name="cachorrinho" id="cachorrinho" class="check" value="Cachorrinho">
+          </div>
+        </div>
+      </ol>
+    </section>
+
+    <section class="categorias">
+      <p class="titulo_categoria">BEBIDAS</p>
+      <ol>
+        <div class="container_listas">
+          <div class="nome_desc">
+            <li class="nome_pedido">Guaraná</li>
+            <p class="descrição_pedidos">600ml</p>
+          </div>
+          <div class="div_checkbox">
+            <input type="checkbox" name="guaraná" id="guaraná" class="check" value="Guaraná">
+          </div>
+        </div>
+
+        <div class="container_listas">
+          <div class="nome_desc">
+            <li class="nome_pedido">Água</li>
+            <p class="descrição_pedidos">Água Mineral.</p>
+          </div>
+          <div class="div_checkbox">
+            <input type="checkbox" name="agua" id="agua" class="check" value="Água">
+          </div>
+        </div>
+      </ol>
+    </section>
+
+    <section id="section_finalizar">
+      <input type="button" value="Finalizar Pedido">
+    </section>
+
+<section id="finalização">
+      <h3>Finalizar Pedido</h3>
+      <div id="itens_pedido"></div>
+      <div class="metodos_pagamento">
+        <label>
+          <input type="radio" name="metodo_pagamento" value="Cartão de Crédito"> Cartão de Crédito
+        </label>
+        <label>
+          <input type="radio" name="metodo_pagamento" value="Cartão de Débito"> Cartão de Débito
+        </label>
+        <label>
+          <input type="radio" name="metodo_pagamento" value="Pix"> Pix
+        </label>
+      </div>
+      <div id="total_pedido">
+        <h3>Total: R$ <span id="valor_total">0.00</span></h3>
+      </div>
+      <input type="button" value="Confirmar">
+    </section>
+  </main>
+
+  <script>
+    const precosItens = {
+      "X-Tudo": 20.00,
+      "X-Salada": 15.00,
+      "Cachorrão": 10.00,
+      "Cachorrinho": 7.00,
+      "Guaraná": 5.00,
+      "Água": 3.00
+    };
+
+    function adicionarEventos() {
+      adicionarEventoFinalizar();
+      adicionarEventoConfirmar();
+      adicionarEventoCheckboxes();
+    }
+
+    function adicionarEventoFinalizar() {
+      const finalizarBtn = document.querySelector("#section_finalizar > input");
+      finalizarBtn.addEventListener("click", () => {
+        processarPedido();
+        mostrarFinalizacao();
+        atualizarTotal();
+      });
+    }
+
+    function processarPedido() {
+      const itensPedido = document.getElementById("itens_pedido");
+      const checkboxes = document.getElementsByClassName("check");
+      itensPedido.innerHTML = "";
+      Array.from(checkboxes).forEach(checkbox => {
+        if (checkbox.checked) {
+          criarItemPedido(checkbox.value);
+        }
+      });
+    }
+
+    function mostrarFinalizacao() {
+      const finalizacaoSection = document.querySelector("#finalização");
+      finalizacaoSection.style.display = "block";
+    }
+
+    function criarItemPedido(texto) {
+      const itensPedido = document.getElementById("itens_pedido");
+      const preco = precosItens[texto];
+      let div = document.createElement("div");
+      div.classList.add("itens");
+      div.dataset.preco = preco;
+      div.innerHTML = `
+        <span>${texto} - R$ ${preco.toFixed(2)}</span>
+        <div class="quantidade">
+          <button class="diminuir">-</button>
+          <span class="quant">1</span>
+          <button class="aumentar">+</button>
+        </div>
+        <span class="remover">Remover</span>
+      `;
+      itensPedido.append(div);
+      adicionarEventosItem(div);
+      }
+
+    function adicionarEventosItem(div) {
+      const diminuirBtn = div.querySelector(".diminuir");
+      const aumentarBtn = div.querySelector(".aumentar");
+      const quantSpan = div.querySelector(".quant");
+      const removerBtn = div.querySelector(".remover");
+
+      diminuirBtn.addEventListener("click", () => {
+        alterarQuantidade(quantSpan, -1, div);
+      });
+
+      aumentarBtn.addEventListener("click", () => {
+        alterarQuantidade(quantSpan, 1, div);
+      });
+
+      removerBtn.addEventListener("click", () => {
+        removerItem(div);
+        atualizarTotal();
+      });
+    }
+
+    function alterarQuantidade(quantSpan, delta, div) {
+      let quant = parseInt(quantSpan.textContent);
+      quant = Math.max(1, quant + delta);
+      quantSpan.textContent = quant;
+      atualizarTotal();
+    }
+
+    function removerItem(div) {
+      const itemNome = div.querySelector("span").textContent.split(" - ")[0];
+      div.remove();
+      document.querySelector(`#${itemNome.toLowerCase().replace(' ', '-')}`).checked = false;
+    }
+
+    function atualizarTotal() {
+      const itensPedido = document.querySelectorAll("#itens_pedido .itens");
+      let total = 0;
+      itensPedido.forEach(item => {
+        const preco = parseFloat(item.dataset.preco);
+        const quantidade = parseInt(item.querySelector(".quant").textContent);
+        total += preco * quantidade;
+      });
+      document.getElementById("valor_total").textContent = total.toFixed(2);
+    }
+
+    function adicionarEventoConfirmar() {
+      const confirmar = document.querySelector("#finalização > input");
+      confirmar.addEventListener("click", () => {
+        confirmarPedido();
+      });
+    }
+
+    function confirmarPedido() {
+      const metodoPagamento = document.querySelector('input[name="metodo_pagamento"]:checked');
+      if (metodoPagamento) {
+        esconderFinalizacao();
+        alert(`Pedido feito com sucesso! Pagamento via ${metodoPagamento.value}. Total: R$ ${document.getElementById("valor_total").textContent}`);
+      } else {
+        alert("Por favor, selecione um método de pagamento.");
+      }
+    }
+
+    function esconderFinalizacao() {
+      const finalizacaoSection = document.querySelector("#finalização");
+      finalizacaoSection.style.display = 'none';
+    }
+
+    function adicionarEventoCheckboxes() {
+      const checkboxes = document.getElementsByClassName("check");
+      Array.from(checkboxes).forEach(checkbox => {
+        checkbox.addEventListener("change", (e) => {
+          const container = e.target.closest(".container_listas");
+          container.classList.toggle("selected", e.target.checked);
+        });
+      });
+    }
+
+    
+    adicionarEventos();
+  </script>
+</body>
+</html>
